@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Header from './Header';
 
-function Login({ onLogin, onClick }) {
+function Login({ onLogin }) {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const navigate = useNavigate();
@@ -15,13 +15,13 @@ function Login({ onLogin, onClick }) {
     });
   };
 
-  function onClick() {
+  function onHavigeteRegister() {
     navigate('/sing-up', { replace: true });
   }
 
   return (
     <>
-      <Header title="Регистрация" onClick={onClick} isOpen={false} />
+      <Header title="Регистрация" onClick={onHavigeteRegister} isOpen={false} />
       <form className="authorization__conteiner" onSubmit={handleSubmit}>
         <h1 className="authorization__title">Вход</h1>
 

@@ -1,8 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Route, Routes, useNavigate } from 'react-router-dom';
-import Header from './Header';
 import Main from './Main';
-import Footer from './Footer';
 import unionTrue from '../images/unionTrue.png';
 import unionFalse from '../images/unionFalse.png';
 import ImagePopup from './imagePopup';
@@ -19,7 +17,6 @@ import { CurrentUserContext } from '../contexts/CurrentUserContext';
 
 function App() {
   const [loggedIn, setLoggedIn] = useState(false);
-  const [userData, setUserData] = useState({});
   const [email, setEmail] = useState('');
   const [message, setMessage] = useState({
     imgPath: '',
@@ -32,7 +29,6 @@ function App() {
   const [isEditAvatarPopupOpen, setIsEditAvatarPopupOpen] = useState(false);
   const [isEditProfilePopupOpen, setIsEditProfilePopupOpen] = useState(false);
   const [isEditPhotoPopupOpen, setIsEditPhotoPopupOpen] = useState(false);
-  const [isEditInfoTooltip, setIsEditInfoTooltip] = useState(false);
   const [selectedCard, setSelectedCard] = useState({});
   const [currentUser, setCurrentUser] = useState({});
   const [cards, setCards] = useState([]);
@@ -51,10 +47,6 @@ function App() {
 
   const handleEditPhotoClick = () => {
     setIsEditPhotoPopupOpen(!isEditPhotoPopupOpen);
-  };
-
-  const handleEditInfoTooltip = () => {
-    setIsEditInfoTooltip(!isEditInfoTooltip);
   };
 
   const handleCardClick = (card) => {
@@ -142,36 +134,37 @@ function App() {
     auth
       .register({ password, email })
       .then((res) => {
-        navigate('/');
+        navigate('/sing-in');
         setInfoTooltip(true);
         setEmail(res.data.email);
         setMessage({
           imgPath: unionTrue,
           text: 'Вы успешно зарегистрировались!',
         });
+        if (res.jwt) {
+          setLoggedIn(true);
+          sessionStorage.getItem('jwt', res.jwt);
+        }
       })
       .catch((err) => {
         setInfoTooltip(true);
+        console.log(err);
         setMessage({
           imgPath: unionFalse,
           text: 'Что-то пошло не так! Попробуйте ещё раз.',
         });
-        console.log(err);
       });
   }
 
   function onLogin({ password, email }) {
     auth
       .authorize({ password, email })
-      .then((res) => {
-        setLoggedIn(true);
-        setEmail(res.data.email);
-        navigate('/', { replace: true });
-
-        if (res.jwt) {
+      .then((token) => {
+        auth.getContent(token).then((res) => {
           setLoggedIn(true);
-          sessionStorage.getItem('jwt', res.jwt);
-        }
+          setEmail(res.data.email);
+          navigate('/', { replace: true });
+        });
       })
       .catch(() => {
         setInfoTooltip(true);
@@ -182,12 +175,6 @@ function App() {
       });
   }
 
-  const onSingOut = () => {
-    localStorage.removeItem('jwt');
-    setLoggedIn(true);
-    navigate('/sing-in');
-  };
-
   useEffect(() => {
     const jwt = localStorage.getItem('jwt');
 
@@ -197,11 +184,17 @@ function App() {
         .then((res) => {
           setEmail(res.data.email);
           setLoggedIn(true);
-          navigate('/');
+          navigate('/', { replace: true });
         })
         .catch((err) => console.log(err));
     }
-  }, []);
+  }, [navigate]);
+
+  const onSingOut = () => {
+    localStorage.removeItem('jwt');
+    setLoggedIn(true);
+    navigate('/sing-in');
+  };
 
   return (
     <>

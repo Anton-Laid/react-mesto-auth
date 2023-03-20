@@ -15,13 +15,13 @@ function Register({ onRegister }) {
     });
   };
 
-  function onLogin() {
+  function onHavigeteLogin() {
     navigate('/sing-in', { replace: true });
   }
 
   return (
     <>
-      <Header title="Войти" onClick={onLogin} />
+      <Header title="Войти" onClick={onHavigeteLogin} />
       <form className="register__conteiner" onSubmit={handleSubmit}>
         <h1 className="register__title">Регистрация</h1>
 
@@ -57,7 +57,7 @@ function Register({ onRegister }) {
         <button
           className="registerg__button-exit"
           type="submit"
-          onClick={onLogin}
+          onClick={onHavigeteLogin}
         >
           Войти
         </button>
