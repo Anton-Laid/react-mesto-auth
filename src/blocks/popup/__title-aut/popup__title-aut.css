@@ -1,0 +1,17 @@
+.popup__title-aut {
+  font-family: 'Inter', Arial, sans-serif;
+  font-size: 20px;
+  font-weight: 900;
+  line-height: 22px;
+  letter-spacing: 0em;
+  text-align: center;
+  margin: 0 auto 50px;
+}
+
+@media (min-width: 700px) {
+  .popup__title-aut {
+    font-size: 24px;
+    margin: 0 auto 60px;
+    width: 358px;
+  }
+}

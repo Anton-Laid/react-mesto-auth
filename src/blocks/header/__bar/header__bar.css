@@ -1,0 +1,17 @@
+.header__bar {
+  visibility: hidden;
+  opacity: 0;
+  transition: 2s ease-in-out;
+}
+
+.header__bar-active {
+  visibility: visible;
+  opacity: 1;
+  width: 100%;
+}
+
+@media (min-width: 500px) {
+  .header__bar {
+    display: none;
+  }
+}

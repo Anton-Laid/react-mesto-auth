@@ -1,0 +1,67 @@
+.header__burger {
+  display: none;
+  position: relative;
+  z-index: 50;
+  align-items: center;
+  justify-content: flex-end;
+  width: 30px;
+  height: 18px;
+  padding: 0 20px 0;
+  cursor: pointer;
+  transition: opacity 2s;
+}
+
+.header__burger span {
+  height: 2px;
+  width: 100%;
+  transform: scale(1);
+  background-color: #faf6f2;
+}
+
+.header__burger::before,
+.header__burger::after {
+  content: '';
+  position: absolute;
+  height: 2px;
+  width: 43%;
+  background-color: #faf6f2;
+  transition: all 0.3s ease 0s;
+}
+
+.header__burger::before {
+  top: 0;
+}
+
+.header__burger::after {
+  bottom: 0;
+}
+
+/* Добавляем класс active для анимации иконки бургера */
+.header__burger.active span {
+  transform: scale(0);
+}
+
+.header__burger.active::before {
+  top: 50%;
+  transform: rotate(-45deg) translate(0, -50%);
+}
+
+.header__burger.active::after {
+  bottom: 50%;
+  transform: rotate(45deg) translate(0, 50%);
+}
+
+@media (max-width: 500px) {
+  .header__burger {
+    display: flex;
+  }
+
+  .header__nav {
+    display: none;
+  }
+
+  .header__nav ul {
+    flex-direction: column;
+    row-gap: 30px;
+  }
+}
