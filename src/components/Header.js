@@ -1,12 +1,68 @@
 import { useState } from 'react';
+import { Link } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router';
 
-function Header({ isOpen, title, email, onClick, onSingOut }) {
+function Header({ email, onSingOut }) {
   const [show, setShow] = useState(false);
+  const pathname = useLocation();
+  const navigate = useNavigate();
 
   function handleShow() {
     setShow(!show);
   }
 
+  const burgerClassName = show
+    ? 'header__burger-nav-active'
+    : 'header__burger-nav';
+
+  function exit() {
+    navigate('/sing-in', { replace: true });
+    onSingOut();
+  }
+
+  return (
+    <>
+      {show && (
+        <div className="header__bar">
+          <p className="header__bar-email">{email}</p>
+          <button onClick={exit} className="header__bar-button" to={'/sign-in'}>
+            Выйти
+          </button>
+        </div>
+      )}
+      <header className="header">
+        <div className="header__logo" />
+        {pathname.pathname === '/sing-up' && (
+          <Link className="header__title-button" to={'/sing-in'}>
+            Войти
+          </Link>
+        )}
+        {pathname.pathname === '/sing-in' && (
+          <Link className="header__title-button" to={'/sing-up'}>
+            Регистрация
+          </Link>
+        )}
+        {pathname.pathname === '/' && (
+          <>
+            <div className="header__burger" onClick={handleShow}>
+              <div className={burgerClassName} />
+            </div>
+            <div className="header__burger-box">
+              <p className="header__burger-email">{email}</p>
+              <button onClick={exit} className="header__burger-button">
+                Выйти
+              </button>
+            </div>
+          </>
+        )}
+      </header>
+    </>
+  );
+}
+
+export default Header;
+
+{
   /**
    * по какой причине я так сделал?
    * по хорошему я бы сделал еще один класс например,
@@ -16,52 +72,45 @@ function Header({ isOpen, title, email, onClick, onSingOut }) {
    * С нетерпением жду вашего мнения по поводу этого.
    * Может я зациклился на одном и не вижу как можно сделать по другому.
    */
-
-  return (
+  /* <>
+{show && (
+  <div className="">
+    <p className="header__email">{email}</p>
+    <button onClick={isOpen} className="header__included" to={'/sign-in'}>
+      Выйти
+    </button>
+  </div>
+)}
+<header className="header">
+  <a href="#" className="header__logo" />
+  {pathname === '/sing-up' && (
+    <Link className="header__included" to={'/sing-in'}>
+      Войти
+    </Link>
+  )}
+  {pathname === '/sing-in' && (
+    <Link className="header__included" to={'/sing-up'}>
+      Регистрация
+    </Link>
+  )}
+  {pathname === '/' && (
     <>
-      {show && (
-        <div className={`${show ? 'header__bar-active' : ''} header__bar`}>
-          <h4 className="header__bar-email">{email}</h4>
-          <div className="header__bar-button" onClick={onSingOut}>
-            {title}
-          </div>
-        </div>
-      )}
-      {isOpen ? (
-        <header className="header">
-          <div className="header__logo"></div>
-          <div className="header__nav">
-            <li className="header__email">{email}</li>
-            <button className="header__btn-dectop" onClick={onSingOut}>
-              {title}
-            </button>
-          </div>
-          {isOpen ? (
-            <div
-              className={`header__burger ${show ? 'active' : ''}`}
-              onClick={handleShow}
-            >
-              <span></span>
-            </div>
-          ) : (
-            ''
-          )}
-        </header>
-      ) : (
-        <header className="header">
-          <div className="header__logo"></div>
-          <div className="header__nav">
-            <button className="header__included" onClick={onClick}>
-              {title}
-            </button>
-          </div>
-        </header>
-      )}
+      <button onClick={handleShow} className="" />
+      <div className="">
+        <p className="current-user__email">{email}</p>
+        <button
+          onClick={isOpen}
+          className="current-user__logout"
+          to={'/sign-in'}
+        >
+          Выйти
+        </button>
+      </div>
     </>
-  );
+  )}
+</header>
+</> */
 }
-
-export default Header;
 
 // function HeaderOne() {
 

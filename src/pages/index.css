@@ -8,16 +8,16 @@
 
 @import url('../blocks/header/header.css');
 @import url('../blocks/header/__logo/header__logo.css');
-@import url('../blocks/header/__email/header__email.css');
-@import url('../blocks/header/__included/header__included.css');
-@import url('../blocks/header/__box/header__box.css');
-@import url('../blocks/header/__button/header__button.css');
-@import url('../blocks/header/__bar/header__bar.css');
 @import url('../blocks/header/__burger/header__burger.css');
-@import url('../blocks/header/__nav/header__nav.css');
+@import url('../blocks/header/__title-button/header__title-button.css');
+@import url('../blocks/header/__burger/__burger-box/header__burger-box.css');
+@import url('../blocks/header/__burger/__burger-email/header__burger-email.css');
+@import url('../blocks/header/__burger/__burger-button/header__burger-button.css');
+@import url('../blocks/header/__bar/header__bar.css');
 @import url('../blocks/header/__bar/__bar-email/header__bar-email.css');
+@import url('../blocks/header/__bar/__bar-email/header__bar-email.css');
+@import url('../blocks/header/__burger/__burger-nav/header__burger-nav.css');
 @import url('../blocks/header/__bar/__bar-button/header__bar-button.css');
-@import url('../blocks/header/__btn-dectop/header__btn-dectop.css');
 
 /* Информация пользователя */
 

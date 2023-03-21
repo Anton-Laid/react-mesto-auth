@@ -1,14 +1,13 @@
 .header__bar-email {
   font-family: 'Inter', Arial, sans-serif;
+  height: 40px;
   font-size: 18px;
   font-weight: 500;
-  line-height: 22px;
   letter-spacing: 0em;
   text-align: center;
-  margin: 40px auto 0;
-  color: #ffffff;
-  width: 142px;
+  color: #fff;
+  margin: 40px auto 18px;
+  width: 220px;
   text-overflow: ellipsis;
   white-space: nowrap;
-  overflow: hidden;
 }
