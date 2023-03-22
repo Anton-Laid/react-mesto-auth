@@ -13,32 +13,30 @@ function Card(props) {
   ${isLiked && 'photo__like_active'}`;
 
   return (
-    <div id="template" className="template">
-      <div className="photo">
-        <img
-          src={card.link}
-          alt={card.name}
-          className="photo__image"
-          onClick={() => onCardClick(card)}
-        />
-        <div className="photo__box">
-          <h2 className="photo__title">{card.name}</h2>
-          <div>
-            <button
-              className={cardLikeButtonClassName}
-              type="button"
-              onClick={() => handleCardLike(card)}
-            ></button>
-            <div className="photo__like-sum">{card.likes.length}</div>
-          </div>
-        </div>
-        {isOwn && (
+    <div className="photo">
+      <img
+        src={card.link}
+        alt={card.name}
+        className="photo__image"
+        onClick={() => onCardClick(card)}
+      />
+      <div className="photo__box">
+        <h2 className="photo__title">{card.name}</h2>
+        <div>
           <button
-            className="photo__removel"
-            onClick={() => handleCardDelete(card)}
+            className={cardLikeButtonClassName}
+            type="button"
+            onClick={() => handleCardLike(card)}
           ></button>
-        )}
+          <div className="photo__like-sum">{card.likes.length}</div>
+        </div>
       </div>
+      {isOwn && (
+        <button
+          className="photo__removel"
+          onClick={() => handleCardDelete(card)}
+        ></button>
+      )}
     </div>
   );
 }

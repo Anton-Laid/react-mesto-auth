@@ -120,15 +120,17 @@ function App() {
   }
 
   useEffect(() => {
-    Promise.all([api.getInfoUser(), api.getCardsList()])
-      .then(([userData, dataCards]) => {
-        setCurrentUser(userData);
-        setCards(dataCards);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  }, []);
+    if (loggedIn) {
+      Promise.all([api.getInfoUser(), api.getCardsList()])
+        .then(([userData, dataCards]) => {
+          setCurrentUser(userData);
+          setCards(dataCards);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    }
+  }, [loggedIn]);
 
   function onRegister({ password, email }) {
     auth
@@ -156,25 +158,6 @@ function App() {
       });
   }
 
-  function onLogin({ password, email }) {
-    auth
-      .authorize({ password, email })
-      .then((token) => {
-        auth.getContent(token).then((res) => {
-          setLoggedIn(true);
-          setEmail(res.data.email);
-          navigate('/', { replace: true });
-        });
-      })
-      .catch(() => {
-        setInfoTooltip(true);
-        setMessage({
-          imgPath: unionFalse,
-          text: 'Что-то пошло не так! Попробуйте ещё раз.',
-        });
-      });
-  }
-
   useEffect(() => {
     const jwt = localStorage.getItem('jwt');
 
@@ -195,6 +178,23 @@ function App() {
     setLoggedIn(true);
     navigate('/sing-in');
   };
+
+  function onLogin({ password, email }) {
+    auth
+      .authorize({ password, email })
+      .then(() => {
+        setLoggedIn(true);
+        setEmail(email);
+        navigate('/', { replace: true });
+      })
+      .catch(() => {
+        setInfoTooltip(true);
+        setMessage({
+          imgPath: unionFalse,
+          text: 'Что-то пошло не так! Попробуйте ещё раз.',
+        });
+      });
+  }
 
   return (
     <>

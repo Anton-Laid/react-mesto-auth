@@ -60,6 +60,7 @@
 @import url('../blocks/popup/__button/__active/popup__button-active.css');
 @import url('../blocks/popup/__image/popup__image.css');
 @import url('../blocks/popup/__title-aut/popup__title-aut.css');
+@import url('../blocks/popup/__tooltip/popup__tooltip.css');
 
 /* popup увеличения изображения */
 @import url('../blocks/popup-foto/__box/popup-foto__box.css');

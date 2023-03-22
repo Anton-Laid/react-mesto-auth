@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Header from './Header';
 
-function Login({ onLogin }) {
+function Login({ onLogin, handleShowInfoMessage }) {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const navigate = useNavigate();
@@ -52,3 +52,63 @@ function Login({ onLogin }) {
 }
 
 export default Login;
+
+// const defaultValue = {
+//   email: '',
+//   password: '',
+// };
+// const [email, setEmail] = useState('');
+// const [password, setPassword] = useState('');
+
+// const [inputs, setInputs] = useState(defaultValue);
+// const navigate = useNavigate();
+
+// function handleChange(event) {
+//   const value = event.target.value;
+//   const name = event.target.name;
+//   setInputs((state) => ({ ...state, [name]: value }));
+// }
+
+// const handleSubmit = (e) => {
+//   e.preventDefault();
+//   authorize(inputs)
+//     .then((res) => {
+//       if (res.token) localStorage.setItem('token', res.poken);
+//       resetForm();
+//       onLogin();
+//       navigate('/');
+//     })
+//     .catch((err) => {
+//       handleShowInfoMessage({
+//         text: 'Что-то пошло не так! Попробуйте еще раз.',
+//         isSuccess: false,
+//       });
+//     });
+// };
+
+// function resetForm() {
+//   setInputs({ ...defaultValue });
+// }
+
+// const onHavigeteRegister = () => {
+//   navigate('/');
+// };
+
+// function onLogin({ password, email }) {
+//   auth
+//     .authorize({ password, email })
+//     .then((res) => {
+//       console.log(res.token);
+//       localStorage.setItem('token', res.token);
+//       setLoggedIn(true);
+//       setEmail(res.data.email);
+//       navigate('/', { replace: true });
+//     })
+//     .catch(() => {
+//       setInfoTooltip(true);
+//       setMessage({
+//         imgPath: unionFalse,
+//         text: 'Что-то пошло не так! Попробуйте ещё раз.',
+//       });
+//     });
+// }

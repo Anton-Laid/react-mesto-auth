@@ -1,0 +1,17 @@
+.popup__tooltip {
+  width: 280px;
+  height: 308px;
+  background-color: #fff;
+  border-radius: 10px;
+  margin: auto;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+}
+
+@media (min-width: 500px) {
+  .popup__tooltip {
+    width: 430px;
+    height: 330px;
+  }
+}
