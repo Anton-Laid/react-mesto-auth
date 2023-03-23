@@ -61,6 +61,8 @@
 @import url('../blocks/popup/__image/popup__image.css');
 @import url('../blocks/popup/__title-aut/popup__title-aut.css');
 @import url('../blocks/popup/__tooltip/popup__tooltip.css');
+@import url('../blocks/popup/__photo/popup__photo.css');
+@import url('../blocks/popup/__photo/__photo-open/popup__photo-open.css');
 
 /* popup увеличения изображения */
 @import url('../blocks/popup-foto/__box/popup-foto__box.css');

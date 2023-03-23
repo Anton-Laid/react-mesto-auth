@@ -32,6 +32,11 @@ function App() {
   const [selectedCard, setSelectedCard] = useState({});
   const [currentUser, setCurrentUser] = useState({});
   const [cards, setCards] = useState([]);
+  const [openPopupImage, setOpenPopupImage] = useState(false);
+
+  const handlePopupImage = () => {
+    setOpenPopupImage(!openPopupImage);
+  };
 
   const handleInfoTooltip = () => {
     setInfoTooltip(!infoTooltip);
@@ -248,7 +253,12 @@ function App() {
           onClose={handleInfoTooltip}
           message={message}
         />
-        <ImagePopup onClose={() => handleCardClick({})} card={selectedCard} />
+        <ImagePopup
+          onClose={() => handleCardClick({})}
+          card={selectedCard}
+          isOpen={openPopupImage}
+          handlePopupImage={handlePopupImage}
+        />
       </CurrentUserContext.Provider>
     </>
   );

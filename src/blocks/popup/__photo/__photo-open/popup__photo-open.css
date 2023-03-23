@@ -1,0 +1,4 @@
+.popup__photo-open {
+  visibility: inherit;
+  opacity: 1;
+}

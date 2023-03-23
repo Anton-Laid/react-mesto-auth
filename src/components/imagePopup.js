@@ -2,10 +2,9 @@ import closePopup from '../utils/utils';
 
 function ImagePopup(props) {
   const { card, onClose } = props;
-
   return (
     <div
-      className={card.link ? 'popup popup_opened' : 'popup'}
+      className={card.link ? 'popup__photo popup__photo-open' : 'popup__photo'}
       onClick={(e) => closePopup(e, onClose)}
     >
       <div className="popup-foto__box">
