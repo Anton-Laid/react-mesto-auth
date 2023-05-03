@@ -10,6 +10,7 @@
   height: 22px;
   cursor: pointer;
   visibility: hidden;
+  border: none;
 }
 
 .header__burger-button:hover {
